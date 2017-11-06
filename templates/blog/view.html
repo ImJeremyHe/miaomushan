@@ -1,0 +1,27 @@
+{% extends '../snippet/layout.html' %}
+
+{% block title %}
+    妙木山
+{% end block %}
+
+{% block main %}
+    <div class="topic-detail container-box">
+        <div class="ui-header">
+            <a href="/u/{{ essay_info['uid'] }}">
+                <img src="/" alt="" class="avatar" />
+            </a>
+            <div class="main">
+                <h3 class="title">{{ essay_info['title'] }}</h3>
+                <div class="meta">
+                    <span class="node"><a href="/">{{ essay_info['node_name'] }}</a></span> •
+                    <span class="username">
+                        <a href="/">{{ essay_info['username'] }}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="ui-content">
+            {{ essay_info['content'] }}
+        </div>
+    </div>
+{% end block %}

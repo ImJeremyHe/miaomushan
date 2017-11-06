@@ -1,0 +1,35 @@
+{% extends '../snippet/layout.html' %}
+
+{% block main %}
+    {% for essay in hot_essay %}
+    <div class="topics container-box deprecated-mt10">
+        <div class="topic-item">
+                <a href="/">
+                    <img src="/" alt="" class="avatar" />
+                </a>
+                <div class="main">
+                    <h3 class="title">
+                        <a href="/t/{{ essay.tid }}">{{ essay.title }}</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/n/{{ essay.node_name }}">{{ essay.node_name }}</a></span> •
+                        <span class="username">
+                            <a href="/u/{{ essay.uid }}">{{ essay.username }}</a>
+                        </span> •
+                            <span class="last-touched">{{ essay.created }}</span> •
+                            <span class="last-reply-username">最后回复来自
+                                <a href="/u/{{ essay.last_reply_uid }}">
+                                    <strong>{{ essay.last_reply_user_name }}</strong>
+                                </a>
+                            </span>
+                    </div>
+                </div>
+                    <div class="count">
+                        {{ essay.read_count }}
+                    </div>
+            </div>
+    </div>
+    {% end for %}
+{% end block %}
+
+
