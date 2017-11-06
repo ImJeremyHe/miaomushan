@@ -106,3 +106,13 @@ class RegisterHandler(BaseHandler):
         self.redirect(r'/login')
 
 
+class LogoutHandler(BaseHandler):
+    def __init__(self, *args, **kwargs):
+        super(LogoutHandler, self).__init__(*args, **kwargs)
+
+    @tornado.web.authenticated
+    def get(self):
+        self.user_info = {}
+        key = self.get_secure_cookie("mms")
+        self.application.rd.delete(key)
+        self.redirect('/')

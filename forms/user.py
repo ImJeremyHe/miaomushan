@@ -21,7 +21,7 @@ class RegisterForm(Form):
         validators.DataRequired(message="必须填写用户名"),
         validators.Length(min=3, message="用户名长度必须大于3个字符"),
         validators.Length(max=10, message="用户名长度必须小于10个字符"),
-        validators.Regexp("^[a-z][a-zA-Z0-9_]*$", message="用户名不得包含标点符号或汉字"),
+        validators.Regexp("^[a-z][0-9a-zA-Z]*$", message="用户名不得包含特殊符号"),
     ])
     email = StringField('email', [validators.DataRequired(message="请填写邮箱地址"),
                                   validators.Email(message="请填入有效的邮箱地址"),
