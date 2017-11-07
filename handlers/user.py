@@ -4,6 +4,7 @@ import hashlib
 import json
 import time
 import random
+import time
 import tornado.web
 import forms.user
 import lib.utils
@@ -46,8 +47,7 @@ class LoginHandler(BaseHandler):
         user_info = self.application.user_model.authenticate(email, password)
         if user_info:
             user_info = user_info[0]
-            key = "%s%s" % (email, 1234 * random.randint(12, 91))
-            secret_key = hashlib.sha1(key).hexdigest()
+            secret_key = str(int(round(time.time()) * 1000)) + hashlib.sha1(email).hexdigest()
             self.set_cookie("mms", secret_key)
             self.application.rd.set(secret_key, json.dumps(user_info, cls=lib.utils.MyEncoder))
             self.redirect("/")
