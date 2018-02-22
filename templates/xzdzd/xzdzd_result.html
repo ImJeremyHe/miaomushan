@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+<div class="wrap">
+    <div class="item">
+        <span class="name" style="color:#696969"> record_name </span>
+        <span class="period" style="color:#696969"> 参考值 </span>
+        <span class="pga" style="color:#696969"> pga/g </span>
+    </div>
+    {% for record in records %}
+        <div class="item">
+            <span class="name">{{ record["name"] }}</span>
+            <span class="period">{{ record[t] }} </span>
+            <span class="pga">{{ record["pga"] }}</span>
+            <a class="download" href="">下载</a>
+        </div>
+    {% end %}
+</div>
+</body>

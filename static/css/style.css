@@ -1,0 +1,33 @@
+.wrap {
+  margin:0 auto;
+  width:800px;
+  border:1px solid #666;
+  font-size:20px;
+  padding: 15px 0px 0px 30px;
+}
+.item {
+  width:800px;
+  height:36px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.item span {
+  display:inline-block;
+}
+
+.name {
+  width: 360px;
+}
+
+.period {
+  width:120px;
+}
+
+.pga {
+  width:120px;
+}
+
+.download {
+  display:inline-block;
+  color:#CD4F39;
+}

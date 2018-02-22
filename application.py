@@ -13,9 +13,11 @@ import torndb
 import tornado.ioloop
 from tornado.options import define, options
 from jinja2 import Environment, FileSystemLoader
+import handlers.xzdzd
+import model.xzdzd
 
 
-define("port", default=80, help="run on the given port.", type=int)
+define("port", default=8080, help="run on the given port.", type=int)
 define("mysql_host", default="127.0.0.1", help="mysql_host", type=str)
 define("mysql_port", default=3306, help="mysql_port", type=int)
 define("mysql_user", default="root", help="mysql_user", type=str)
@@ -41,7 +43,8 @@ class Application(tornado.web.Application):
             (r'/login', handlers.user.LoginHandler),
             (r'/register', handlers.user.RegisterHandler),
             (r'/publish', handlers.main.CreateHandler),
-            (r'/t/(\d+)', handlers.main.ViewHandler)
+            (r'/t/(\d+)', handlers.main.ViewHandler),
+            (r'/xzdzd', handlers.xzdzd.XzdzdHandler)
         ]
         super(Application, self).__init__(all_handlers, **settings)
         self.user_info = {}
@@ -52,6 +55,8 @@ class Application(tornado.web.Application):
         self.user_model = model.user.UserModel(self.db)
         self.rd_main_model = model.main.MainRedisModel(self.rd)
         self.main_model = model.main.MainModel(self.db)
+
+        self.xzdzd_model = model.xzdzd.XzdzdModel(self.db)
 
 
 if __name__ == '__main__':
