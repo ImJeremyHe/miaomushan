@@ -15,6 +15,11 @@
   display:inline-block;
 }
 
+.ratio {
+  width:30px;
+  color:#8B6914;
+}
+
 .name {
   width: 360px;
 }

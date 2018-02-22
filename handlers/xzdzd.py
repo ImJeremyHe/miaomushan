@@ -29,8 +29,15 @@ class XzdzdHandler(tornado.web.RequestHandler):
             records = sorted(records, key=lambda x: x["t_%s" % period], reverse=True)
             count = len(records)
             records = records[:count/2]
+            ratio = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 1]
+            numbers = [int(count * each) for each in ratio]
+            i = 0
             for index, each in enumerate(records):
-                each['rank'] = index + 1
+                if index + 1 == numbers[i]+1:
+                    each["rank"] = 1 - ratio[i]
+                    i += 1
+                else:
+                    each["rank"] = 0
             template_varibles = {"records": records, "count": count, "t": "t_%s" % period, "error": ""}
             self.render("xzdzd/xzdzd_result.html", **template_varibles)
             return

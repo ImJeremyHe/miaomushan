@@ -5,6 +5,7 @@
 </head>
 <body>
 <div class="wrap">
+    <span style="color:#BDBDBD;font-size:16px;font-weight:bold">一共有{{ count }}条记录</span>
     <div class="item">
         <span class="name" style="color:#696969"> record_name </span>
         <span class="period" style="color:#696969"> 参考值 </span>
@@ -16,6 +17,7 @@
             <span class="period">{{ record[t] }} </span>
             <span class="pga">{{ record["pga"] }}</span>
             <a class="download" href="">下载</a>
+            <span class="ratio">{% if record["rank"] %} {{ "%s%%" % int(record["rank"] * 100) }} {% end if %}</span>
         </div>
     {% end %}
 </div>
