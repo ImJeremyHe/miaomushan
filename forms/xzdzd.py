@@ -14,3 +14,6 @@ class XzdzdForm(Form):
         validators.DataRequired(message="场地条件不能为空"),
         validators.AnyOf(values=[1, 2, 3, 4], message="场地类型输入有误")
     ])
+    pga = FloatField('pga', [
+        validators.Optional(strip_whitespace=True)
+    ])

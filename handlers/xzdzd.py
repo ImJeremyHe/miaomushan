@@ -24,8 +24,14 @@ class XzdzdHandler(tornado.web.RequestHandler):
             c = int(self.request.arguments['c'][0])
             if c in [1, 2, 3, 4]:
                 condition_type = c
+        pga = None
+        if 'pga' in self.request.arguments:
+            pga = self.request.arguments['pga'][0].strip()
+        if not pga:
+            pga = 0.0
+        pga = float(pga)
         if period and condition_type:
-            records = self.application.xzdzd_model.get_records(period, condition_type)
+            records = self.application.xzdzd_model.get_records(period, condition_type, pga)
             records = sorted(records, key=lambda x: x["t_%s" % period], reverse=True)
             count = len(records)
             records = records[:count/2]
@@ -50,7 +56,10 @@ class XzdzdHandler(tornado.web.RequestHandler):
             return self.get({"error": error})
         t = query_form.period.data
         c = query_form.type.data
-        return self.redirect('/xzdzd?t=%s&c=%s' % (t, c))
+        pga = query_form.pga.data
+        if not pga:
+            pga = 0.0
+        return self.redirect('/xzdzd?t=%s&c=%s&pga=%s' % (t, c, pga))
 
     def closest_t(self, t):
         minimum = 100

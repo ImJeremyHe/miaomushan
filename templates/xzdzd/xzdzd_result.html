@@ -16,7 +16,7 @@
             <span class="name">{{ record["name"] }}</span>
             <span class="period">{{ record[t] }} </span>
             <span class="pga">{{ record["pga"] }}</span>
-            <a class="download" href="">下载</a>
+            <a class="download" href={{ '../../static/record/' + record["name"]+".AT2" }}>下载</a>
             <span class="ratio">{% if record["rank"] %} {{ "%s%%" % int(record["rank"] * 100) }} {% end if %}</span>
         </div>
     {% end %}
