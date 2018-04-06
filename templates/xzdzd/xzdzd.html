@@ -1,18 +1,28 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="wrap">
-    <form method="post">
-        <span>{{ error }}</span><br>
-        基本周期<input name="period">
-        场地类型<input name="type"><br>
-        PGA<input name="pga">
-        <button>查询</button>
-        {{ xsrf_form_html() }}
-    </form>
+<div class="search-wrap">
+	<div class="search-container">
+	    <form method="post" id="search-form">
+	        <div class="form-item">
+	        	<label>基本周期：</label><input name="period" placeholder="周期大于0.1小于6">
+	        </div>
+	        <div class="form-item">
+	        	<label>场地类型：</label><input name="type" placeholder="场地类型： 1—4">
+	        </div>
+	        <div class="form-item">
+	          <label>PGA：</label><input name="pga" placeholder="可不填">
+	        </div>
+	        <button class="search-btn">查询</button>
+	        <div class="error-msg">{{ error }}</div>
+	        {{ xsrf_form_html() }}
+	    </form>
+	    <!-- 说明 -->
+	    <div class="desc"></div>
+	</div>
 </div>
 
 </body>

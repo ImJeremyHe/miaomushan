@@ -6,5 +6,5 @@ class XzdzdModel(object):
         self.table = "earthquake"
 
     def get_records(self, t, c, pga):
-        sql = "SELECT name, t_%s, pga from %s WHERE type = %s and pga >= %s" % (t, self.table, c, pga)
+        sql = "SELECT name, t_%s, pga, magnitude, epid from %s WHERE type = %s and pga >= %s" % (t, self.table, c, pga)
         return self.db.query(sql)
