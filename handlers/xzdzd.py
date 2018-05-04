@@ -63,7 +63,7 @@ class XzdzdHandler(tornado.web.RequestHandler):
         para = query_form.para.data
         if not pga:
             pga = 0.0
-        return self.redirect('/xzdzd?t=%s&c=%s&pga=%s&%s' % (t, c, pga, para))
+        return self.redirect('/xzdzd?t=%s&c=%s&pga=%s&para=%s' % (t, c, pga, para))
 
     def closest_t(self, t):
         minimum = 100
