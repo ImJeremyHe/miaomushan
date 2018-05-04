@@ -17,7 +17,7 @@ import handlers.xzdzd
 import model.xzdzd
 
 
-define("port", default=8080, help="run on the given port.", type=int)
+define("port", default=80, help="run on the given port.", type=int)
 define("mysql_host", default="127.0.0.1", help="mysql_host", type=str)
 define("mysql_port", default=3306, help="mysql_port", type=int)
 define("mysql_user", default="root", help="mysql_user", type=str)

@@ -30,9 +30,12 @@ class XzdzdHandler(tornado.web.RequestHandler):
         if not pga:
             pga = 0.0
         pga = float(pga)
+        para = 't'
+        if 'para' in self.request.arguments:
+            para = self.request.arguments['para'][0]
         if period and condition_type:
-            records = self.application.xzdzd_model.get_records(period, condition_type, pga)
-            records = sorted(records, key=lambda x: x["t_%s" % period], reverse=True)
+            records = self.application.xzdzd_model.get_records(period, condition_type, pga, para)
+            records = sorted(records, key=lambda x: x["%s_%s" % (para, period)], reverse=True)
             count = len(records)
             records = records[:count/2]
             ratio = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 1]
@@ -44,7 +47,7 @@ class XzdzdHandler(tornado.web.RequestHandler):
                     i += 1
                 else:
                     each["rank"] = 0
-            template_varibles = {"records": records, "count": count, "t": "t_%s" % period, "error": ""}
+            template_varibles = {"records": records, "count": count, "t": "%s_%s" % (para, period), "error": ""}
             self.render("xzdzd/xzdzd_result.html", **template_varibles)
             return
         self.render("xzdzd/xzdzd.html", **template_varibles)
@@ -57,9 +60,10 @@ class XzdzdHandler(tornado.web.RequestHandler):
         t = query_form.period.data
         c = query_form.type.data
         pga = query_form.pga.data
+        para = query_form.para.data
         if not pga:
             pga = 0.0
-        return self.redirect('/xzdzd?t=%s&c=%s&pga=%s' % (t, c, pga))
+        return self.redirect('/xzdzd?t=%s&c=%s&pga=%s&%s' % (t, c, pga, para))
 
     def closest_t(self, t):
         minimum = 100

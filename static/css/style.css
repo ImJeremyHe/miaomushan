@@ -1,5 +1,5 @@
 body,html {
-  background-color: #485152d9;
+  background-color: rgba(84,170,230,0.8);
 }
 input {
   outline: none;
@@ -110,7 +110,7 @@ label {
   position: absolute;
   bottom: -100px;
   left: 0px;
-  right: 0px;   
+  right: 0px;
   margin: auto;
   background-color: rgba(255,255,255,0.1);
   border-radius: 6px;
@@ -121,7 +121,7 @@ label {
 
 .result-wrap {
   margin: 0 auto;
-  width: 800px;
+  width: 1000px;
   font-size: 20px;
   background-color: rgba(255,255,255,0.3);
   border-radius: 6px;
@@ -134,7 +134,7 @@ label {
 
 }
 .item {
-  width:800px;
+  width:100%;
   height:36px;
   border-bottom: 1px solid #5e5c5c;
   font-size: 18px;
@@ -154,16 +154,12 @@ label {
   width: 360px;
 }
 
-.period {
-  width:120px;
-}
-
-.pga {
+.period,.pga,.magnitude,.epid {
   width:120px;
 }
 
 .download {
   display:inline-block;
   color:#1B9AF7;
-  margin-left: 65px;
+  margin-left: 25px;
 }
